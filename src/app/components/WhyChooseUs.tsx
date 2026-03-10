@@ -108,15 +108,7 @@ export function WhyChooseUs() {
               return (
                 <div
                   key={reason.title}
-                  style={{
-                    display: "flex",
-                    gap: "16px",
-                    padding: "20px",
-                    borderRadius: "14px",
-                    border: "1px solid rgba(110,43,184,0.1)",
-                    backgroundColor: "#fafafa",
-                    transition: "all 0.25s",
-                  }}
+                  className="why-card"
                   onMouseEnter={(e) => {
                     (e.currentTarget as HTMLElement).style.borderColor = "rgba(110,43,184,0.35)";
                     (e.currentTarget as HTMLElement).style.backgroundColor = "#f8f4ff";
@@ -128,23 +120,14 @@ export function WhyChooseUs() {
                     (e.currentTarget as HTMLElement).style.boxShadow = "none";
                   }}
                 >
-                  <div style={{
-                    width: "48px",
-                    height: "48px",
-                    borderRadius: "12px",
-                    backgroundColor: "rgba(110,43,184,0.1)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                  }}>
+                  <div className="why-icon-wrap">
                     <Icon size={22} color="#6E2BB8" />
                   </div>
-                  <div>
-                    <h4 style={{ margin: "0 0 6px 0", fontSize: "15px", fontWeight: 700, color: "#1a1a2e" }}>
+                  <div className="why-card-body">
+                    <h4 className="why-card-title">
                       {reason.title}
                     </h4>
-                    <p style={{ margin: 0, fontSize: "13px", color: "#666", lineHeight: 1.65 }}>
+                    <p className="why-card-desc">
                       {reason.description}
                     </p>
                   </div>
@@ -167,14 +150,79 @@ export function WhyChooseUs() {
           grid-template-columns: 1fr 1fr;
           gap: 16px;
         }
+        .why-card {
+          display: flex;
+          gap: 16px;
+          padding: 20px;
+          border-radius: 14px;
+          border: 1px solid rgba(110,43,184,0.1);
+          background-color: #fafafa;
+          transition: all 0.25s;
+          align-items: flex-start;
+        }
+        .why-icon-wrap {
+          width: 48px;
+          height: 48px;
+          border-radius: 12px;
+          background-color: rgba(110,43,184,0.1);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+        .why-card-body { flex: 1; }
+        .why-card-title {
+          margin: 0 0 6px 0;
+          font-size: 15px;
+          font-weight: 700;
+          color: #1a1a2e;
+        }
+        .why-card-desc {
+          margin: 0;
+          font-size: 13px;
+          color: #666;
+          line-height: 1.65;
+        }
+
         @media (max-width: 1000px) {
           .why-layout {
             grid-template-columns: 1fr;
           }
         }
-        @media (max-width: 540px) {
+
+        /* Mobile: compact 2×2 grid, icon above text */
+        @media (max-width: 600px) {
           .why-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+          }
+          .why-card {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 10px;
+            padding: 16px 12px;
+            border-radius: 12px;
+          }
+          .why-icon-wrap {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            flex-shrink: 0;
+          }
+          .why-card-title {
+            font-size: 12.5px;
+            margin: 0 0 4px 0;
+          }
+          .why-card-desc {
+            font-size: 11.5px;
+            line-height: 1.55;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .why-card {
+            padding: 12px 8px;
           }
         }
       `}</style>

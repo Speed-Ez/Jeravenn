@@ -88,16 +88,14 @@ export function About() {
 
           {/* Right Content */}
           <div style={{ display: "flex", flexDirection: "column", gap: "24px", justifyContent: "center" }}>
-            <p style={{
-              fontSize: "16px",
+            <p className="about-body-text" style={{
               color: "#555",
               lineHeight: 1.85,
               margin: 0,
             }}>
               Jeraven Logistics Limited is a <strong style={{ color: "#6E2BB8" }}>technology-driven logistics company</strong> based in Abuja, providing end-to-end delivery and fulfillment services for e-commerce businesses.
             </p>
-            <p style={{
-              fontSize: "16px",
+            <p className="about-body-text" style={{
               color: "#555",
               lineHeight: 1.85,
               margin: 0,
@@ -110,7 +108,7 @@ export function About() {
               {highlights.map((item) => (
                 <div key={item} style={{ display: "flex", alignItems: "center", gap: "12px" }}>
                   <CheckCircle2 size={20} color="#6E2BB8" style={{ flexShrink: 0 }} />
-                  <span style={{ fontSize: "15px", color: "#444", fontWeight: 500 }}>{item}</span>
+                  <span className="about-highlight-text" style={{ color: "#444", fontWeight: 500 }}>{item}</span>
                 </div>
               ))}
             </div>
@@ -124,9 +122,9 @@ export function About() {
             }}>
               <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
                 <Target size={18} color="#6E2BB8" />
-                <span style={{ fontSize: "13px", fontWeight: 700, color: "#6E2BB8", textTransform: "uppercase", letterSpacing: "0.5px" }}>Our Mission</span>
+                <span className="about-mission-label" style={{ fontWeight: 700, color: "#6E2BB8", textTransform: "uppercase", letterSpacing: "0.5px" }}>Our Mission</span>
               </div>
-              <p style={{ margin: 0, fontSize: "15px", color: "#444", lineHeight: 1.7, fontStyle: "italic" }}>
+              <p className="about-mission-text" style={{ margin: 0, color: "#444", lineHeight: 1.7, fontStyle: "italic" }}>
                 "Deliver fast, reliable, and scalable logistics solutions that power e-commerce growth."
               </p>
             </div>
@@ -141,11 +139,24 @@ export function About() {
           gap: 64px;
           align-items: center;
         }
+        .about-body-text { font-size: 16px; }
+        .about-highlight-text { font-size: 15px; }
+        .about-mission-label { font-size: 13px; }
+        .about-mission-text { font-size: 15px; }
+
         @media (max-width: 900px) {
           .about-grid {
             grid-template-columns: 1fr;
-            gap: 48px;
+            gap: 40px;
           }
+        }
+
+        /* Mobile: match Services section font sizes */
+        @media (max-width: 600px) {
+          .about-body-text { font-size: 13px; }
+          .about-highlight-text { font-size: 13px; }
+          .about-mission-label { font-size: 11px; }
+          .about-mission-text { font-size: 13px; }
         }
       `}</style>
     </section>
