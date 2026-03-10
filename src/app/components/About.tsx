@@ -1,4 +1,4 @@
-import truckImg from "figma:asset/7d16dca7ee0f60f1f0f9c9faab3b7f2e1d4c138d.png";
+import truckImg from "../../assets/7d16dca7ee0f60f1f0f9c9faab3b7f2e1d4c138d.png";
 import { MapPin, Calendar, Target, CheckCircle2 } from "lucide-react";
 
 const highlights = [
