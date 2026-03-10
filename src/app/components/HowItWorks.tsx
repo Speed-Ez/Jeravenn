@@ -83,72 +83,24 @@ export function HowItWorks() {
           {steps.map((step, idx) => {
             const Icon = step.icon;
             return (
-              <div key={step.number} style={{ position: "relative" }}>
-                {/* Connector line */}
-                {idx < steps.length - 1 && (
-                  <div className="step-connector" />
-                )}
-
-                <div style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  textAlign: "center",
-                  gap: "20px",
-                }}>
+              <div key={step.number} className="step-card">
+                <div className="step-inner">
                   {/* Number + Icon */}
-                  <div style={{ position: "relative" }}>
-                    <div style={{
-                      width: "90px",
-                      height: "90px",
-                      borderRadius: "50%",
-                      background: "rgba(110,43,184,0.25)",
-                      border: "2px solid rgba(110,43,184,0.5)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      boxShadow: "0 0 30px rgba(110,43,184,0.3)",
-                      position: "relative",
-                    }}>
-                      <Icon size={36} color="#c084fc" />
+                  <div style={{ position: "relative", display: "inline-flex" }}>
+                    <div className="step-circle">
+                      <Icon size={32} color="#c084fc" />
                     </div>
-                    <div style={{
-                      position: "absolute",
-                      top: "-8px",
-                      right: "-8px",
-                      width: "28px",
-                      height: "28px",
-                      borderRadius: "50%",
-                      backgroundColor: "#6E2BB8",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "11px",
-                      fontWeight: 800,
-                      color: "white",
-                      boxShadow: "0 4px 10px rgba(110,43,184,0.5)",
-                    }}>
+                    <div className="step-number">
                       {step.number}
                     </div>
                   </div>
 
                   {/* Content */}
                   <div>
-                    <h3 style={{
-                      fontSize: "18px",
-                      fontWeight: 700,
-                      color: "white",
-                      margin: "0 0 10px 0",
-                    }}>
+                    <h3 className="step-title">
                       {step.title}
                     </h3>
-                    <p style={{
-                      fontSize: "14px",
-                      color: "rgba(255,255,255,0.6)",
-                      lineHeight: 1.7,
-                      margin: 0,
-                      maxWidth: "220px",
-                    }}>
+                    <p className="step-desc">
                       {step.description}
                     </p>
                   </div>
@@ -163,30 +115,116 @@ export function HowItWorks() {
         .steps-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 32px;
+          gap: 28px;
           position: relative;
         }
-        .step-connector {
-          position: absolute;
-          top: 44px;
-          right: -16px;
-          width: 32px;
-          height: 2px;
-          background: linear-gradient(90deg, rgba(110,43,184,0.6), rgba(110,43,184,0.2));
-          z-index: 1;
+        .step-card {
+          background: rgba(255,255,255,0.04);
+          border: 1px solid rgba(110,43,184,0.25);
+          border-radius: 20px;
+          padding: 32px 20px;
+          transition: all 0.3s;
         }
-        @media (max-width: 900px) {
+        .step-card:hover {
+          background: rgba(110,43,184,0.15);
+          border-color: rgba(110,43,184,0.5);
+          transform: translateY(-4px);
+        }
+        .step-inner {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 18px;
+        }
+        .step-circle {
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          background: rgba(110,43,184,0.25);
+          border: 2px solid rgba(110,43,184,0.5);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 0 24px rgba(110,43,184,0.3);
+        }
+        .step-number {
+          position: absolute;
+          top: -8px;
+          right: -8px;
+          width: 26px;
+          height: 26px;
+          border-radius: 50%;
+          background: #6E2BB8;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 11px;
+          font-weight: 800;
+          color: white;
+          box-shadow: 0 4px 10px rgba(110,43,184,0.5);
+        }
+        .step-title {
+          font-size: 16px;
+          font-weight: 700;
+          color: white;
+          margin: 0 0 8px 0;
+        }
+        .step-desc {
+          font-size: 13px;
+          color: rgba(255,255,255,0.6);
+          line-height: 1.65;
+          margin: 0;
+        }
+
+        @media (max-width: 1000px) {
           .steps-grid {
             grid-template-columns: repeat(2, 1fr);
-            gap: 48px;
-          }
-          .step-connector {
-            display: none;
+            gap: 20px;
           }
         }
-        @media (max-width: 540px) {
+
+        /* Mobile: stays 2×2, more compact */
+        @media (max-width: 600px) {
           .steps-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+          }
+          .step-card {
+            padding: 22px 14px;
+            border-radius: 16px;
+          }
+          .step-circle {
+            width: 60px;
+            height: 60px;
+          }
+          .step-number {
+            width: 22px;
+            height: 22px;
+            font-size: 10px;
+            top: -6px;
+            right: -6px;
+          }
+          .step-title {
+            font-size: 13px;
+            margin: 0 0 6px 0;
+          }
+          .step-desc {
+            font-size: 11.5px;
+            line-height: 1.55;
+          }
+          .step-inner {
+            gap: 12px;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .step-card {
+            padding: 18px 10px;
+          }
+          .step-circle {
+            width: 52px;
+            height: 52px;
           }
         }
       `}</style>

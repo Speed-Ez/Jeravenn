@@ -81,7 +81,7 @@ export function CTA() {
           Join hundreds of e-commerce merchants across Abuja who trust Jeraven to handle their deliveries. Start today — it's simple.
         </p>
 
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", justifyContent: "center" }}>
+        <div className="cta-btn-row" style={{ display: "flex", flexWrap: "wrap", gap: "16px", justifyContent: "center" }}>
           <button
             onClick={() => handleScroll("#contact")}
             style={{
@@ -133,7 +133,7 @@ export function CTA() {
         </div>
 
         {/* Trust indicators */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "32px", justifyContent: "center", marginTop: "48px" }}>
+        <div className="cta-stats" style={{ display: "flex", flexWrap: "wrap", gap: "32px", justifyContent: "center", marginTop: "48px" }}>
           {[["500+", "Deliveries Made"], ["98%", "Satisfaction Rate"], ["24hr", "Support Available"], ["2024", "Est. Abuja, Nigeria"]].map(([val, label]) => (
             <div key={label} style={{ textAlign: "center" }}>
               <p style={{ margin: 0, fontSize: "26px", fontWeight: 800, color: "white" }}>{val}</p>
@@ -142,6 +142,17 @@ export function CTA() {
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 600px) {
+          .cta-stats {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px !important;
+            margin-top: 36px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

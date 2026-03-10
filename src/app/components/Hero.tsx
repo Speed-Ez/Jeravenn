@@ -1,6 +1,6 @@
-import packingImg from "../../assets/7efef9847e5a42f8810474c41cfe9483dcac0989.png";
-import deliveryImg from "../../assets/fcf9861636b7b93e1b77ac9fe40b698726a1182c.png";
-import truckImg from "../../assets/7d16dca7ee0f60f1f0f9c9faab3b7f2e1d4c138d.png";
+import packingImg from "figma:asset/7efef9847e5a42f8810474c41cfe9483dcac0989.png";
+import deliveryImg from "figma:asset/fcf9861636b7b93e1b77ac9fe40b698726a1182c.png";
+import truckImg from "figma:asset/7d16dca7ee0f60f1f0f9c9faab3b7f2e1d4c138d.png";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -156,27 +156,16 @@ export function Hero() {
             </div>
 
             {/* Badges */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginTop: "8px" }}>
+            <div className="badges-grid">
               {badges.map((badge) => (
                 <div
                   key={badge}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "6px",
-                    backgroundColor: "white",
-                    padding: "8px 14px",
-                    borderRadius: "8px",
-                    border: "1px solid rgba(110,43,184,0.15)",
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
-                    fontSize: "13px",
-                    fontWeight: 500,
-                    color: "#333",
-                    whiteSpace: "nowrap",
-                  }}
+                  className="badge-item"
                 >
-                  <CheckCircle size={15} color="#6E2BB8" />
-                  {badge}
+                  <div className="badge-icon-wrap">
+                    <CheckCircle size={18} color="#6E2BB8" />
+                  </div>
+                  <span className="badge-text">{badge}</span>
                 </div>
               ))}
             </div>
@@ -273,10 +262,66 @@ export function Hero() {
           align-items: center;
           width: 100%;
         }
+
+        /* Badges: default inline row */
+        .badges-grid {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          margin-top: 8px;
+        }
+        .badge-item {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          background: white;
+          padding: 8px 14px;
+          border-radius: 8px;
+          border: 1px solid rgba(110,43,184,0.15);
+          box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+          font-size: 13px;
+          font-weight: 500;
+          color: #333;
+          white-space: nowrap;
+          font-family: 'Poppins', sans-serif;
+        }
+        .badge-icon-wrap { display: flex; align-items: center; }
+        .badge-text { line-height: 1.2; }
+
         @media (max-width: 900px) {
           .hero-grid {
             grid-template-columns: 1fr;
-            gap: 48px;
+            gap: 40px;
+          }
+        }
+
+        /* Mobile: 2×2 badge grid with icon above text */
+        @media (max-width: 600px) {
+          .badges-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 4px;
+          }
+          .badge-item {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 6px;
+            padding: 14px 10px;
+            border-radius: 12px;
+            white-space: normal;
+            font-size: 12px;
+          }
+          .badge-icon-wrap {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(110,43,184,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
         }
       `}</style>

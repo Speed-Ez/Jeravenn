@@ -81,53 +81,37 @@ export function Services() {
                 key={service.title}
                 onMouseEnter={() => setHovered(idx)}
                 onMouseLeave={() => setHovered(null)}
+                className="service-card"
                 style={{
                   backgroundColor: isHovered ? "#6E2BB8" : "white",
-                  borderRadius: "20px",
-                  padding: "40px 32px",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "20px",
                   boxShadow: isHovered
                     ? "0 20px 50px rgba(110,43,184,0.35)"
                     : "0 4px 20px rgba(0,0,0,0.06)",
                   transition: "all 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
-                  transform: isHovered ? "translateY(-8px)" : "translateY(0)",
+                  transform: isHovered ? "translateY(-6px)" : "translateY(0)",
                   cursor: "pointer",
                   border: "1px solid",
                   borderColor: isHovered ? "transparent" : "rgba(0,0,0,0.06)",
                 }}
               >
                 {/* Icon */}
-                <div style={{
-                  width: "60px",
-                  height: "60px",
-                  borderRadius: "16px",
+                <div className="service-icon-wrap" style={{
                   backgroundColor: isHovered ? "rgba(255,255,255,0.15)" : service.bg,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
                   transition: "all 0.35s",
                 }}>
-                  <Icon size={28} color={isHovered ? "white" : service.color} />
+                  <Icon size={26} color={isHovered ? "white" : service.color} />
                 </div>
 
                 {/* Content */}
-                <div>
-                  <h3 style={{
-                    fontSize: "20px",
-                    fontWeight: 700,
+                <div className="service-content">
+                  <h3 className="service-title" style={{
                     color: isHovered ? "white" : "#1a1a2e",
-                    margin: "0 0 10px 0",
                     transition: "color 0.35s",
                   }}>
                     {service.title}
                   </h3>
-                  <p style={{
-                    fontSize: "14px",
+                  <p className="service-desc" style={{
                     color: isHovered ? "rgba(255,255,255,0.82)" : "#666",
-                    lineHeight: 1.75,
-                    margin: 0,
                     transition: "color 0.35s",
                   }}>
                     {service.description}
@@ -136,24 +120,14 @@ export function Services() {
 
                 {/* Learn More */}
                 <button
+                  className="service-btn"
                   style={{
-                    backgroundColor: "transparent",
-                    border: "none",
-                    cursor: "pointer",
                     color: isHovered ? "white" : "#6E2BB8",
-                    fontSize: "14px",
-                    fontWeight: 600,
-                    padding: 0,
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "6px",
-                    marginTop: "auto",
-                    transition: "gap 0.2s",
                     fontFamily: "'Poppins', sans-serif",
                   }}
                 >
                   Learn More
-                  <ArrowRight size={16} />
+                  <ArrowRight size={14} />
                 </button>
               </div>
             );
@@ -167,14 +141,92 @@ export function Services() {
           grid-template-columns: repeat(4, 1fr);
           gap: 24px;
         }
+        .service-card {
+          border-radius: 20px;
+          padding: 36px 28px;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+        .service-icon-wrap {
+          width: 56px;
+          height: 56px;
+          border-radius: 14px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+        .service-title {
+          font-size: 18px;
+          font-weight: 700;
+          margin: 0 0 8px 0;
+        }
+        .service-desc {
+          font-size: 13px;
+          line-height: 1.7;
+          margin: 0;
+        }
+        .service-btn {
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          font-size: 13px;
+          font-weight: 600;
+          padding: 0;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          margin-top: auto;
+        }
+
         @media (max-width: 1100px) {
           .services-grid {
             grid-template-columns: repeat(2, 1fr);
           }
         }
+
+        /* Mobile: compact 2×2 grid */
         @media (max-width: 600px) {
           .services-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+          }
+          .service-card {
+            border-radius: 16px;
+            padding: 20px 16px;
+            gap: 10px;
+          }
+          .service-icon-wrap {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+          }
+          .service-title {
+            font-size: 14px;
+            margin: 0 0 4px 0;
+          }
+          .service-desc {
+            font-size: 12px;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+          .service-btn {
+            font-size: 12px;
+            gap: 4px;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .services-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+          }
+          .service-card {
+            padding: 16px 12px;
           }
         }
       `}</style>
